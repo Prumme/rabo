@@ -1,0 +1,16 @@
+services:
+  rabo:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      RABO_DB_PATH: /data/rabo.sqlite
+    volumes:
+      - ./data:/data
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+    name: prumme-proxy
